@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://aslfu.github.io/atom.xml" rel="self"/>
   <link href="http://aslfu.github.io/"/>
-  <updated>2015-05-31T23:01:26+08:00</updated>
+  <updated>2015-05-31T23:06:19+08:00</updated>
   <id>http://aslfu.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -24,6 +24,9 @@
 summary()
 tapply(arg1,arg2,arg3) #group arg1 by arg2, apply arg3
 </code></pre>
+
+<!--more-->
+
 
 <h2>Linear Regression</h2>
 
