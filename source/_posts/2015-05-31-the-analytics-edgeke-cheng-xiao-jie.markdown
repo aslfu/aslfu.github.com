@@ -11,6 +11,7 @@ str()
 summary()
 tapply(arg1,arg2,arg3) #group arg1 by arg2, apply arg3
 ~~~
+<!--more-->
 ## Linear Regression
 
 **多变量线性模型（x,y均为连续变量)**
