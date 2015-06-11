@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://aslfu.github.io/atom.xml" rel="self"/>
   <link href="http://aslfu.github.io/"/>
-  <updated>2015-05-31T23:06:19+08:00</updated>
+  <updated>2015-06-11T22:19:01+08:00</updated>
   <id>http://aslfu.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[布朗运动]]></title>
+    <link href="http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong/"/>
+    <updated>2015-06-11T22:18:33+08:00</updated>
+    <id>http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Analytics Edge课程小结]]></title>
