@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>感知机模型及简单算法实现 - My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>感知机模型及简单算法实现 - My Blog</title>
+  <meta name="author" content="Her">
 
   
-  <meta name="description" content="感知机模型 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。 ${f}(x)=sign(w\bullet x+b)$ 感知机策略 &hellip;">
+  <meta name="description" content="感知机模型 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。 ${f}(x)=sign(w\bullet x+b)$ ### 感知机策略 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="My Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -36,7 +36,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">My Blog</a></h1>
   
     <h2>A blogging framework for hackers.</h2>
   
@@ -84,47 +84,41 @@
   </header>
 
 
-<div class="entry-content"><h3>感知机模型</h3>
+<div class="entry-content"><h3 id="section">感知机模型</h3>
 
 <p>假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。</p>
 
 <!--more-->
-
-
-<p>
-${f}(x)=sign(w\bullet x+b)$</p>
+<p>${f}(x)=sign(w\bullet x+b)$</p>
 
 <hr />
-
-<h3>感知机策略</h3>
+<p>### 感知机策略</p>
 
 <p>假设训练数据集是线性可分的，感知机学习的目标是求得一个能够将训练集正负样本完全分开的分离超平面。为了找出这样的超平面，即确定感知机模型参数$w,b$，需要确定一个<strong>学习策略</strong>，即定义损失函数，并将其极小化.</p>
 
 <p>损失函数的一个自然选择是误分类点的总数，但这样的损失函数不是参数$w,b$的连续可导函数，不易优化。损失函数的另一个选择是误分类点导超平面的总距离。定义为：</p>
 
-<p>$L(w,b)＝-\sum<em>{x</em>{i}\in{M}}{y<em>{i}(w\bullet x</em>{i}+b)}$</p>
+<p>$L(w,b)＝-\sum_{x_{i}\in{M}}{y_{i}(w\bullet x_{i}+b)}$</p>
 
 <hr />
+<p>### 感知机算法</p>
 
-<h3>感知机算法</h3>
+<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w_{0},b_{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
 
-<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w<em>{0},b</em>{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
+<p>$ \nabla_{w}L(w,b)=-\sum_{x_{i}\in{M}}y_{i}x_{i}$</p>
 
-<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}x_{i}$</p>
+<p>$ \nabla_{w}L(w,b)=-\sum_{x_{i}\in{M}}y_{i}$</p>
 
-<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}$</p>
+<p>随机选取一个误分类点$(x_{i},y_{i})$,对$w,b$进行更新：</p>
 
-<p>随机选取一个误分类点$(x<em>{i},y</em>{i})$,对$w,b$进行更新：</p>
-
-<p>$w&lt;-w+\eta y<em>{i}x</em>{i}$</p>
+<p>$w&lt;-w+\eta y_{i}x_{i}$</p>
 
 <p>$b&lt;-b+\eta y_{i}$</p>
 
 <hr />
+<p>### Python实现</p>
 
-<h3>Python实现</h3>
-
-<pre><code class="py"># coding:utf-8
+<pre><code class="language-py"># coding:utf-8
 import numpy as np
 import pandas as pd
 """
@@ -156,7 +150,7 @@ class Perceptron:
 
     """
     def __init__(self, eta, w0, b0, iterMax, data):
-        """
+    	"""
         eta: 学习率，w0：权重向量w的初始值，b0:偏置b的初始值，iterMax:最大循环次数
         """
         self.eta = eta
@@ -212,7 +206,7 @@ if __name__ == "__main__":
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">Her</span></span>
 
       
 
@@ -277,9 +271,39 @@ if __name__ == "__main__":
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Your Name -
+  Copyright &copy; 2015 - Her -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+                       tex2jax: {
+                       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                       processEscapes: true
+                       }
+                       });
+    </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+                       tex2jax: {
+                       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                       }
+                       });
+    </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+                      var all = MathJax.Hub.getAllJax(), i;
+                      for(i=0; i < all.length; i += 1) {
+                      all[i].SourceElement().parentNode.className += ' has-jax';
+                      }
+                      });
+    </script>
+
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
 </footer>
   

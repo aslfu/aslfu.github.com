@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[My Blog]]></title>
   <link href="http://aslfu.github.io/atom.xml" rel="self"/>
   <link href="http://aslfu.github.io/"/>
-  <updated>2015-06-14T20:56:08+08:00</updated>
+  <updated>2015-06-14T21:08:41+08:00</updated>
   <id>http://aslfu.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Her]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -18,47 +18,41 @@
     <link href="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/"/>
     <updated>2015-06-14T20:52:35+08:00</updated>
     <id>http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian</id>
-    <content type="html"><![CDATA[<h3>感知机模型</h3>
+    <content type="html"><![CDATA[<h3 id="section">感知机模型</h3>
 
 <p>假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。</p>
 
 <!--more-->
-
-
-<p>
-${f}(x)=sign(w\bullet x+b)$</p>
+<p>${f}(x)=sign(w\bullet x+b)$</p>
 
 <hr />
-
-<h3>感知机策略</h3>
+<p>### 感知机策略</p>
 
 <p>假设训练数据集是线性可分的，感知机学习的目标是求得一个能够将训练集正负样本完全分开的分离超平面。为了找出这样的超平面，即确定感知机模型参数$w,b$，需要确定一个<strong>学习策略</strong>，即定义损失函数，并将其极小化.</p>
 
 <p>损失函数的一个自然选择是误分类点的总数，但这样的损失函数不是参数$w,b$的连续可导函数，不易优化。损失函数的另一个选择是误分类点导超平面的总距离。定义为：</p>
 
-<p>$L(w,b)＝-\sum<em>{x</em>{i}\in{M}}{y<em>{i}(w\bullet x</em>{i}+b)}$</p>
+<p>$L(w,b)＝-\sum_{x_{i}\in{M}}{y_{i}(w\bullet x_{i}+b)}$</p>
 
 <hr />
+<p>### 感知机算法</p>
 
-<h3>感知机算法</h3>
+<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w_{0},b_{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
 
-<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w<em>{0},b</em>{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
+<p>$ \nabla_{w}L(w,b)=-\sum_{x_{i}\in{M}}y_{i}x_{i}$</p>
 
-<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}x_{i}$</p>
+<p>$ \nabla_{w}L(w,b)=-\sum_{x_{i}\in{M}}y_{i}$</p>
 
-<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}$</p>
+<p>随机选取一个误分类点$(x_{i},y_{i})$,对$w,b$进行更新：</p>
 
-<p>随机选取一个误分类点$(x<em>{i},y</em>{i})$,对$w,b$进行更新：</p>
-
-<p>$w&lt;-w+\eta y<em>{i}x</em>{i}$</p>
+<p>$w&lt;-w+\eta y_{i}x_{i}$</p>
 
 <p>$b&lt;-b+\eta y_{i}$</p>
 
 <hr />
+<p>### Python实现</p>
 
-<h3>Python实现</h3>
-
-<pre><code class="py"># coding:utf-8
+<pre><code class="language-py"># coding:utf-8
 import numpy as np
 import pandas as pd
 """
@@ -90,7 +84,7 @@ class Perceptron:
 
     """
     def __init__(self, eta, w0, b0, iterMax, data):
-        """
+    	"""
         eta: 学习率，w0：权重向量w的初始值，b0:偏置b的初始值，iterMax:最大循环次数
         """
         self.eta = eta
@@ -146,39 +140,30 @@ if __name__ == "__main__":
     <link href="http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong/"/>
     <updated>2015-06-11T22:18:33+08:00</updated>
     <id>http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong</id>
-    <content type="html"><![CDATA[<h2>花粉与英国海岸线</h2>
+    <content type="html"><![CDATA[<h2 id="section">花粉与英国海岸线</h2>
 
-<p><strong>布朗运动的研究历史</strong></p>
+<p><strong>布朗运动的研究历史</strong> 
+### 罗伯特布朗</p>
 
-<h3>罗伯特布朗</h3>
-
-<p>1828年和1829年，英国植物学家罗伯特布朗在《哲学》杂志上发表了两篇文章，描述自己1827年夏天在显微镜下观察到花粉颗粒在液体中“高速的震荡运动”.</p>
-
-<!--more-->
-
-
-<p>
+<p>1828年和1829年，英国植物学家罗伯特布朗在《哲学》杂志上发表了两篇文章，描述自己1827年夏天在显微镜下观察到花粉颗粒在液体中“高速的震荡运动”. <br />
+<!--more--> 
 布朗发现这些微粒的运动非常没有规律。19世纪进行的许多实验显示，任何两个微粒的运动都是独立的，并且大微粒的运动比小微粒更强。此外，液体的黏稠度越低，温度越高，布朗运动越活跃。</p>
 
-<p>-</p>
-
-<h3>爱因斯坦</h3>
+<p>-
+### 爱因斯坦</p>
 
 <p>1905年，爱因斯坦发表了一篇名为《用热分子动力学解释悬浮在液体中的细小微粒的运动》的论文。爱因斯坦的论文写道：“根据热分子动力学，悬浮在液体中的微观可视物体必须表现出运动性，这是由于热所导致的分子运动。而在微观可视物体的量级，这些运动可以通过显微镜清楚地被观察到。”</p>
 
 <p><strong>爱因斯坦通过渗透规律得出，这种不停顿运动位置的均值与时间的平方根成正比。</strong></p>
 
-<p>-</p>
-
-<h3>斯莫卢霍夫斯基</h3>
-
-<p>斯莫卢霍夫斯基方程描述了悬浮在某个特定浓度的液体中的有特定半径和数量的布朗微粒，在受到一个外部冲击时，其集中度随时间变化而演变的过程。</p>
+<p>-
+### 斯莫卢霍夫斯基
+斯莫卢霍夫斯基方程描述了悬浮在某个特定浓度的液体中的有特定半径和数量的布朗微粒，在受到一个外部冲击时，其集中度随时间变化而演变的过程。</p>
 
 <p>斯莫卢霍夫斯基提出，观测到的布朗运动的不规则运动实际上是许多不可观测的位移总和，是大量撞击的结果，因此，布朗运动的测量方法越精确，所观测到的路径就越长。这正是曼德布罗特的分形理论，即地图上的英国海岸线在比例尺越精确时看上去越长。</p>
 
-<p>-</p>
-
-<h3>朗之万</h3>
+<p>-
+### 朗之万</p>
 
 <p>爱因斯坦考虑的是多个布朗粒子的分布，导出了扩散长度公式。朗之万在1908年写出了单个粒子在“随机力”作用下的运动方程，最后解出方程，证实了爱因斯坦的语言。</p>
 
@@ -188,10 +173,9 @@ if __name__ == "__main__":
 重点：</p>
 
 <ul>
-<li>位移正比于时间的平方</li>
-<li>分形</li>
+  <li>位移正比于时间的平方</li>
+  <li>分形</li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -200,33 +184,28 @@ if __name__ == "__main__":
     <link href="http://aslfu.github.io/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie/"/>
     <updated>2015-05-31T23:00:32+08:00</updated>
     <id>http://aslfu.github.io/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie</id>
-    <content type="html"><![CDATA[<h2>Intro</h2>
-
-<pre><code class="r">str()
+    <content type="html"><![CDATA[<h2 id="intro">Intro</h2>
+<pre><code class="language-r">str()
 summary()
 tapply(arg1,arg2,arg3) #group arg1 by arg2, apply arg3
 </code></pre>
-
 <!--more-->
-
-
-<h2>Linear Regression</h2>
+<p>## Linear Regression</p>
 
 <p><strong>多变量线性模型（x,y均为连续变量)</strong></p>
 
-<p>$y<sup>i</sup> = \beta_0 + \beta_1X_1<sup>i</sup> + \beta_2X_2<sup>i</sup>+ &hellip; + \beta_kX_k<sup>i</sup> + \epsilon<sup>i</sup>$</p>
+<p>$y^i = \beta_0 + \beta_1X_1^i + \beta_2X_2^i+ … + \beta_kX_k^i + \epsilon^i$</p>
 
-<pre><code class="r">fit &lt;- lm(Price ~ AGST + HarvestRain, data=wine) 
+<pre><code class="language-r">fit &lt;- lm(Price ~ AGST + HarvestRain, data=wine) 
 
 &gt;fit$coefficients
  (Intercept)         AGST  HarvestRain 
 -2.202653601  0.602616906 -0.004570055 
-
+    
 &gt;fit$residuals # response-fitted values 理想情况下，残差是正态分布
 &gt;fit$fitted.values # fitted mean values
 </code></pre>
-
-<pre><code class="r">#作图查看模型效果
+<pre><code class="language-r">#作图查看模型效果
 plot(fit)
 #pic1 Residuals vs Fitted 
 #检查拟合度
@@ -235,75 +214,70 @@ plot(fit)
 #pic3 Scale-Location
 #标准化残差开方散点图，显示异常点
 </code></pre>
-
-<pre><code class="r">&gt;summary(fit)
+<pre><code class="language-r">&gt;summary(fit)
 </code></pre>
-
 <ul>
-<li><strong>Coefficients</strong></li>
+  <li><strong>Coefficients</strong></li>
 </ul>
 
-
 <p><strong>Estimate</strong>
-由最小二乘法计算出的参数估计值 $ \hat{\beta_k}$ 。参数为0，代表该变量对模型没有贡献。考虑参数真的为0时（Null Hypothesis），出现该估计值的概率有多大，即显著性检验。<br/>
-<strong>t value</strong> $ t = Estimate/Std. Error$ 越大越显著<br/>
-<strong>Pr(>|t|)</strong> 越小越显著<br/>
+由最小二乘法计算出的参数估计值 $ \hat{\beta_k}$ 。参数为0，代表该变量对模型没有贡献。考虑参数真的为0时（Null Hypothesis），出现该估计值的概率有多大，即显著性检验。<br />
+<strong>t value</strong> $ t = Estimate/Std. Error$ 越大越显著<br />
+<strong>Pr(&gt;|t|)</strong> 越小越显著<br />
 <strong>Std.Error</strong> ＝ Standard Error 与样本/总体标准差成正比，样本大小成反比</p>
 
 <ul>
-<li><strong>R-squared</strong></li>
+  <li><strong>R-squared</strong></li>
 </ul>
 
-
-<p>衡量模型拟合质量的指标，一般来说越大越好。Compares the best model to a &ldquo;baseline&rdquo; model(does not use any variables)</p>
+<p>衡量模型拟合质量的指标，一般来说越大越好。Compares the best model to a “baseline” model(does not use any variables)</p>
 
 <p>$ R-square= \frac{SSR}{SST} = 1- \frac{SSE}{SST}$</p>
 
-<p>SSR 预测数据与原始数据均值之差的平方和<br/>
-SSE 预测数据与原始数据对应点的误差的平方和<br/>
+<p>SSR 预测数据与原始数据均值之差的平方和<br />
+SSE 预测数据与原始数据对应点的误差的平方和<br />
 SST 原始数据和原始数据均值之差的平方和</p>
 
 <p><em>Adjusted R-squared</em>  调整的R平方考虑了变量数目。增加变量，R平方一定增加，但是模型复杂容易过拟合。</p>
 
 <ul>
-<li><p>多重共线性</p>
-
-<blockquote><p>Highly correlated independent variables can affect the interpretation of the coefficients.We won&rsquo;t worry about dealing with correlated independent variables here, but if interpreting the coefficients is important, multicollinearity should be addressed.</p></blockquote></li>
-<li><p>模型选择<br/>
-$ AIC = n + n\log{2\pi} + n\log{(RSS/n)} + 2(p+1)$<br/>
-$ BIC = n + n\log{2\pi} + n\log{(RSS/n)} + (\log{n})(p+1)$<br/>
-&hellip;&hellip;</p></li>
+  <li>
+    <p>多重共线性<br />
+&gt;Highly correlated independent variables can affect the interpretation of the coefficients.We won’t worry about dealing with correlated independent variables here, but if interpreting the coefficients is important, multicollinearity should be addressed.</p>
+  </li>
+  <li>
+    <p>模型选择<br />
+$ AIC = n + n\log{2\pi} + n\log{(RSS/n)} + 2(p+1)$<br />
+$ BIC = n + n\log{2\pi} + n\log{(RSS/n)} + (\log{n})(p+1)$<br />
+……</p>
+  </li>
 </ul>
 
+<h2 id="logistic-regression">Logistic Regression</h2>
+<p>####一、缺失值处理
+- mice包 多重插补法</p>
 
-<h2>Logistic Regression</h2>
+<blockquote>
+  <p>多重插补(Multiple Imputation)是用于填补复杂数据缺失值的一种方法，该方法通过变量间关系来预测缺失数据，利用蒙特卡罗随机模拟方法生成多个完整数据集，再对这些数据集分别进行分析，最后对这些分析结果进行汇总处理。FSC是基于链式方程的插补方法，因此也称为MICE (Multiple Imputation by Chained Equations )。它与其他多重插补算法的本质区别是，它在进行插补时不必考虑被插补变量和协变量的联合分布，而是利用单个变量的条件分布逐一进行插补。在R语言中通过程序包mice中的函数mice()可以实现该方法，它随机模拟多个完整数据集并存入imp，再对imp进行线性回归，最后用pool函数对回归结果进行汇总。</p>
 
-<h4>一、缺失值处理</h4>
+</blockquote>
 
-<ul>
-<li>mice包 多重插补法</li>
-</ul>
-
-
-<blockquote><p>多重插补(Multiple Imputation)是用于填补复杂数据缺失值的一种方法，该方法通过变量间关系来预测缺失数据，利用蒙特卡罗随机模拟方法生成多个完整数据集，再对这些数据集分别进行分析，最后对这些分析结果进行汇总处理。FSC是基于链式方程的插补方法，因此也称为MICE (Multiple Imputation by Chained Equations )。它与其他多重插补算法的本质区别是，它在进行插补时不必考虑被插补变量和协变量的联合分布，而是利用单个变量的条件分布逐一进行插补。在R语言中通过程序包mice中的函数mice()可以实现该方法，它随机模拟多个完整数据集并存入imp，再对imp进行线性回归，最后用pool函数对回归结果进行汇总。</p></blockquote>
-
-<pre><code class="r"># Install and load mice package
+<pre><code class="language-r"># Install and load mice package
 install.packages("mice")
 library(mice)
 
 # Multiple imputation
 set.seed(144)
 imputed = complete(mice(dataset))
-</code></pre>
 
-<h4>二、划分训练集和测试集</h4>
+</code></pre>
+<p>####二、划分训练集和测试集</p>
 
 <ul>
-<li>分类问题，平衡训练集与测试集中因变量的比例</li>
+  <li>分类问题，平衡训练集与测试集中因变量的比例</li>
 </ul>
 
-
-<pre><code class="r">library(caTools)
+<pre><code class="language-r">library(caTools)
 # Randomly split the data into training and testing sets
 set.seed(1000)
 split = sample.split(quality$PoorCare, SplitRatio = 0.65)
@@ -312,62 +286,55 @@ split = sample.split(quality$PoorCare, SplitRatio = 0.65)
 train = subset(quality, split==TRUE)
 test = subset(quality, split==FALSE)
 </code></pre>
-
 <ul>
-<li>非分类问题</li>
+  <li>非分类问题</li>
 </ul>
 
-
-<pre><code class="r">set.seed(1000)
+<pre><code class="language-r">set.seed(1000)
 #sample(x,size,replace = FALSE, prob=NULL)
 split = sample(nrow(quality),0.7*nrow(quality))
 train = qualitysplit,]
 test = quality[-split,]
 </code></pre>
-
-<h4>三、广义线性模型</h4>
-
-<pre><code class="r">glm(formula, family = familytype,data)
+<p>####三、广义线性模型
+~~~r
+glm(formula, family = familytype,data)
 #Family  Default Link Function
-#binomial(link = "logit")
-#gaussian(link = "identity")
-#Gamma(link = "inverse")
-#inverse.gaussian(link = "1/mu^2")
-#poisson(link = "log")
-#quasi(link = "identity", variance = "constant")
-#quasibinomial(link = "logit")
-#quasipoisson(link = "log")
-</code></pre>
+#binomial(link = “logit”)
+#gaussian(link = “identity”)
+#Gamma(link = “inverse”)
+#inverse.gaussian(link = “1/mu^2”)
+#poisson(link = “log”)
+#quasi(link = “identity”, variance = “constant”)
+#quasibinomial(link = “logit”)
+#quasipoisson(link = “log”)
+~~~
+- 逻辑回归</p>
 
-<ul>
-<li>逻辑回归</li>
-</ul>
-
-
-<pre><code class="r ">#Logistic Regression Model
+<pre><code class="language-r">#Logistic Regression Model
 QualityLog = glm(PoorCare ~ OfficeVisits + Narcotics, data=train, family=binomial)
 
 # Predictions on the test set
 predictTest = predict(QualityLog, type="response", newdata=test)
 predictTrain = predict(QualityLog, type="response", newdata=train)
 </code></pre>
-
-<h4>四、二元分类模型阈值问题</h4>
+<p>####  四、二元分类模型阈值问题</p>
 
 <ul>
-<li><strong>Receiver Operator Characteristic（ROC曲线)</strong></li>
-<li>横轴为False positive rate（在所有实际为0的样本中，被错误地判断为1的比率)<br/>
-$ TPR = TP/(TP+FN)$<br/>
+  <li><strong>Receiver Operator Characteristic（ROC曲线)</strong></li>
+  <li>横轴为False positive rate（在所有实际为0的样本中，被错误地判断为1的比率)<br />
+$ TPR = TP/(TP+FN)$<br />
 $ Sensitivity=\frac{TP}{TP+FN} $</li>
-<li>纵轴为True positive rate（在所有实际为1的样本中，被正确地判断为1的比率）<br/>
-$FPR = FP/(FP+TN)$<br/>
+  <li>纵轴为True positive rate（在所有实际为1的样本中，被正确地判断为1的比率）<br />
+$FPR = FP/(FP+TN)$<br />
 $Specificity = \frac{TN}{TN+FP}$</li>
 </ul>
 
+<blockquote>
+  <p>将sensitivity与specificity结合，改变阈值，获得多对tpf和fpf值，绘制ROC曲线，寻找最佳阈值</p>
+</blockquote>
 
-<blockquote><p>将sensitivity与specificity结合，改变阈值，获得多对tpf和fpf值，绘制ROC曲线，寻找最佳阈值</p></blockquote>
-
-<pre><code class="r"># Install and load ROCR package
+<pre><code class="language-r"># Install and load ROCR package
 install.packages("ROCR")
 library(ROCR)
 
@@ -391,24 +358,24 @@ plot(ROCRperf, colorize=TRUE)
 # Add threshold labels 
 plot(ROCRperf, colorize=TRUE, print.cutoffs.at=seq(0,1,by=0.1), text.adj=c(-0.2,1.7))
 </code></pre>
-
 <ul>
-<li><p>AUC值的计算</p>
-
-<blockquote><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。使用AUC值作为评价标准是因为很多时候ROC曲线并不能清晰的说明哪个分类器的效果更好，而作为一个数值，对应AUC更大的分类器效果更好。</p></blockquote></li>
-<li><p>AUC意味着什么</p>
-
-<blockquote><p>那么AUC值的含义是什么呢？根据(Fawcett, 2006)，AUC的值的含义是：The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example.</p>
-
-<p>首先AUC值是一个概率值，当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的Score值将这个正样本排在负样本前面的概率就是AUC值。当然，AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。</p>
-
-<p>ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。</p></blockquote></li>
+  <li>
+    <p>AUC值的计算<br />
+&gt;AUC（Area Under Curve）被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。使用AUC值作为评价标准是因为很多时候ROC曲线并不能清晰的说明哪个分类器的效果更好，而作为一个数值，对应AUC更大的分类器效果更好。</p>
+  </li>
+  <li>
+    <p>AUC意味着什么<br />
+&gt;
+那么AUC值的含义是什么呢？根据(Fawcett, 2006)，AUC的值的含义是：The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example.
+&gt;
+首先AUC值是一个概率值，当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的Score值将这个正样本排在负样本前面的概率就是AUC值。当然，AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。<br />
+&gt;
+&gt;ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。</p>
+  </li>
 </ul>
 
-
-<h2>Trees</h2>
-
-<pre><code class="r">library(rpart)
+<h2 id="trees">Trees</h2>
+<pre><code class="language-r">library(rpart)
 library(rpart.plot)
 #rpart(formula, data=, method=, control=)
 # method = "class" for a classification tree
@@ -416,17 +383,12 @@ library(rpart.plot)
 # parms = For classification splitting, the list can contain any #of: the vector of prior probabilities (component prior), the loss matrix (component loss) or the splitting index (component split). The priors must be positive and sum to 1. The loss matrix must have zeros on the diagonal and positive off-diagonal elements. 
 # control = optional parameters for controlling tree growth. For example, control=rpart.control(minsplit=30, cp=0.001) requires that the minimum number of observations in a node be 30 before attempting a split and that a split must decrease the overall lack of fit by a factor of 0.001 (cost complexity factor) before being attempted.
 </code></pre>
+<p>#### 一、Grow a tree
+- CP(complexity parameter,值越小，模型越复杂) <br />
+$ minimize \sum(RSS \space at \space each \space leaf) +  \lambda S$<br />
+$cp = \frac{\lambda}{RSS(no \space splits)} $</p>
 
-<h4>一、Grow a tree</h4>
-
-<ul>
-<li>CP(complexity parameter,值越小，模型越复杂) <br/>
-$ minimize \sum(RSS \space at \space each \space leaf) +  \lambda S$<br/>
-$cp = \frac{\lambda}{RSS(no \space splits)} $</li>
-</ul>
-
-
-<pre><code class="r"># Load CART packages
+<pre><code class="language-r"># Load CART packages
 library(rpart)
 library(rpart.plot)
 
@@ -435,60 +397,57 @@ latlontree = rpart(MEDV ~ LAT + LON, data=boston)
 prp(latlontree)
 </code></pre>
 
-<pre><code class="r"># Simplify tree by increasing minbucket
+<pre><code class="language-r"># Simplify tree by increasing minbucket
 latlontree = rpart(MEDV ~ LAT + LON, data=boston, minbucket=50)
 </code></pre>
-
-<h4>二、Cross Validation</h4>
-
-<pre><code class="r"># Load libraries for cross-validation
+<p>#### 二、Cross Validation
+~~~r
+# Load libraries for cross-validation
 library(caret)
-library(e1071)
+library(e1071)</p>
 
-# Number of folds
-tr.control = trainControl(method = "cv", number = 10)
+<h1 id="number-of-folds">Number of folds</h1>
+<p>tr.control = trainControl(method = “cv”, number = 10)</p>
 
-# cp values
-cp.grid = expand.grid( .cp = (0:10)*0.001)
+<h1 id="cp-values">cp values</h1>
+<p>cp.grid = expand.grid( .cp = (0:10)*0.001)</p>
 
-# Cross-validation
-tr = train(MEDV ~ LAT + LON + CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + TAX + PTRATIO, data = train, method = "rpart", trControl = tr.control, tuneGrid = cp.grid)
+<h1 id="cross-validation">Cross-validation</h1>
+<p>tr = train(MEDV ~ LAT + LON + CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + TAX + PTRATIO, data = train, method = “rpart”, trControl = tr.control, tuneGrid = cp.grid)</p>
 
-# Extract tree
-best.tree = tr$finalModel
-prp(best.tree)
+<h1 id="extract-tree">Extract tree</h1>
+<p>best.tree = tr$finalModel
+prp(best.tree)</p>
 
-# Make predictions
-best.tree.pred = predict(best.tree, newdata=test)
+<h1 id="make-predictions">Make predictions</h1>
+<p>best.tree.pred = predict(best.tree, newdata=test)
 best.tree.sse = sum((best.tree.pred - test$MEDV)^2)
-</code></pre>
+~~~
+#### 三、Random Forest
+~~~r
+# Install randomForest package
+install.packages(“randomForest”)
+library(randomForest)</p>
 
-<h4>三、Random Forest</h4>
+<h1 id="convert-outcome-to-factor">Convert outcome to factor</h1>
+<p>Train$Reverse = as.factor(Train$Reverse)
+Test$Reverse = as.factor(Test$Reverse)</p>
 
-<pre><code class="r"># Install randomForest package
-install.packages("randomForest")
-library(randomForest)
+<h1 id="build-random-forest-model">Build random forest model</h1>
+<p>StevensForest = randomForest(Reverse ~ Circuit + Issue + Petitioner + Respondent + LowerCourt + Unconst, data = Train, ntree=200, nodesize=25 )</p>
 
-# Convert outcome to factor
-Train$Reverse = as.factor(Train$Reverse)
-Test$Reverse = as.factor(Test$Reverse)
+<h1 id="make-predictions-1">Make predictions</h1>
+<p>PredictForest = predict(StevensForest, newdata = Test)
+~~~</p>
 
-# Build random forest model
-StevensForest = randomForest(Reverse ~ Circuit + Issue + Petitioner + Respondent + LowerCourt + Unconst, data = Train, ntree=200, nodesize=25 )
-
-# Make predictions
-PredictForest = predict(StevensForest, newdata = Test)
-</code></pre>
-
-<h2>Text Analytics</h2>
+<h2 id="text-analytics">Text Analytics</h2>
 
 <ul>
-<li>stringsAsFactors<br/>
+  <li>stringsAsFactors<br />
 data.frame默认stringsAsFactors＝TRUE</li>
 </ul>
 
-
-<pre><code class="r"># Read in the data
+<pre><code class="language-r"># Read in the data
 
 tweets = read.csv("tweets.csv", stringsAsFactors=FALSE)
 
@@ -496,49 +455,44 @@ tweets = read.csv("tweets.csv", stringsAsFactors=FALSE)
 
 tweets$Negative = as.factor(tweets$Avg &lt;= -1)
 </code></pre>
-
 <ul>
-<li>tm：文本挖掘库</li>
+  <li>tm：文本挖掘库</li>
 </ul>
 
-
-<pre><code class="r"># Install new packages
+<pre><code class="language-r"># Install new packages
 
 install.packages("tm")
 library(tm)
 </code></pre>
-
 <ul>
-<li>转换成语料库Corpus, 指一系列文档的集合，是tm包管理文件的数据结构</li>
+  <li>转换成语料库Corpus, 指一系列文档的集合，是tm包管理文件的数据结构</li>
 </ul>
 
+<blockquote>
+  <p>在tm包中，Corpus可以分为两种。一种是Volatile Corpus，这种数据结构是作为R对象保存在内存中,使用VCorpus()或者Corpus()函数；另一种就是Permanent Corpus，作为R的外部保存，使用PCorpus()函数。显然，如何选择取决于内存大小以及运算速率的要求了。</p>
 
-<blockquote><p>在tm包中，Corpus可以分为两种。一种是Volatile Corpus，这种数据结构是作为R对象保存在内存中,使用VCorpus()或者Corpus()函数；另一种就是Permanent Corpus，作为R的外部保存，使用PCorpus()函数。显然，如何选择取决于内存大小以及运算速率的要求了。</p></blockquote>
+</blockquote>
 
-<pre><code class="r">
+<pre><code class="language-r">
 # Create corpus
-
+ 
 corpus = Corpus(VectorSource(tweets$Tweet))
 </code></pre>
-
 <ul>
-<li>查看Corpus</li>
+  <li>查看Corpus</li>
 </ul>
 
-
-<pre><code class="r">corpus #显示文档数据数量
+<pre><code class="language-r">corpus #显示文档数据数量
 names(corpus) #文档名称
 inspect(corpus[1]) #提取第一篇文档的完整信息
 corpus[[1]] #提取第一个文档
 </code></pre>
-
 <ul>
-<li>信息转化<br/>
+  <li>信息转化<br />
 tm_map()函数可以将转化函数作用到每一个文档数据上</li>
 </ul>
 
-
-<pre><code class="r">
+<pre><code class="language-r">
 # Convert to lower-case
 corpus = tm_map(corpus, tolower)
 #转化为纯文本
@@ -565,14 +519,12 @@ install.packages("SnowballC")
 library(SnowballC)
 corpus = tm_map(corpus, stemDocument)
 </code></pre>
-
 <ul>
-<li>创建词条－文档关系矩阵<br/>
+  <li>创建词条－文档关系矩阵<br />
 行是词条，列是文档，矩阵中每个值表示对应的词条在对应的文档中出现的次数</li>
 </ul>
 
-
-<pre><code class="r"># Create matrix
+<pre><code class="language-r"># Create matrix
 
 frequencies = DocumentTermMatrix(corpus)
 
@@ -580,13 +532,11 @@ frequencies = DocumentTermMatrix(corpus)
 
 inspect(frequencies[1000:1005,505:515])
 </code></pre>
-
 <ul>
-<li>删减稀疏条目</li>
+  <li>删减稀疏条目</li>
 </ul>
 
-
-<pre><code class="r">
+<pre><code class="language-r">
 # Check for sparsity
 
 findFreqTerms(frequencies, lowfreq=20)
@@ -595,13 +545,11 @@ findFreqTerms(frequencies, lowfreq=20)
 
 sparse = removeSparseTerms(frequencies, 0.995)
 </code></pre>
-
 <ul>
-<li>分类模型</li>
+  <li>分类模型</li>
 </ul>
 
-
-<pre><code class="r"># Convert to a data frame
+<pre><code class="language-r"># Convert to a data frame
 
 tweetsSparse = as.data.frame(as.matrix(sparse))
 
@@ -623,14 +571,14 @@ split = sample.split(tweetsSparse$Negative, SplitRatio = 0.7)
 
 trainSparse = subset(tweetsSparse, split==TRUE)
 testSparse = subset(tweetsSparse, split==FALSE)
-</code></pre>
 
+
+</code></pre>
 <ul>
-<li>决策树</li>
+  <li>决策树</li>
 </ul>
 
-
-<pre><code class="r"># Build a CART model
+<pre><code class="language-r"># Build a CART model
 
 library(rpart)
 library(rpart.plot)
@@ -640,13 +588,11 @@ tweetCART = rpart(Negative ~ ., data=trainSparse, method="class")
 # Evaluate the performance of the model
 predictCART = predict(tweetCART, newdata=testSparse, type="class")
 </code></pre>
-
 <ul>
-<li>随机森林</li>
+  <li>随机森林</li>
 </ul>
 
-
-<pre><code class="r"># Random forest model
+<pre><code class="language-r"># Random forest model
 
 library(randomForest)
 set.seed(123)
@@ -657,19 +603,21 @@ tweetRF = randomForest(Negative ~ ., data=trainSparse)
 predictRF = predict(tweetRF, newdata=testSparse)
 </code></pre>
 
-<h2>Clustering</h2>
+<h2 id="clustering">Clustering</h2>
 
-<p>主要方法；层次聚类（Hierarchical clustering）与k均值聚类（K-Means clustering）</p>
+<p>主要方法；层次聚类（Hierarchical clustering）与k均值聚类（K-Means clustering）<br />
+### <strong>一、层次聚类</strong><br />
+层次聚类首先将每个样本单独作为一类，然后将不同类之间距离最近的进行合并，合并后重新计算类间距离。</p>
 
-<h3><strong>一、层次聚类</strong></h3>
+<blockquote>
+  <p>可用于定义“距离”的统计量包括了欧氏距离(euclidean)、马氏距离(Mahalanobis)、 曼哈顿距离(Manhattan)、两项距离(binary)、明氏距离(minkowski)。还包括相关系数和夹角余弦。</p>
+</blockquote>
 
-<p>层次聚类首先将每个样本单独作为一类，然后将不同类之间距离最近的进行合并，合并后重新计算类间距离。</p>
+<blockquote>
+  <p>在计算类间距离时则有六种不同的方法，分别是最短距离法、最长距离法、类平均法、重心法、中间距离法、离差平方和法。</p>
+</blockquote>
 
-<blockquote><p>可用于定义“距离”的统计量包括了欧氏距离(euclidean)、马氏距离(Mahalanobis)、 曼哈顿距离(Manhattan)、两项距离(binary)、明氏距离(minkowski)。还包括相关系数和夹角余弦。</p>
-
-<p>在计算类间距离时则有六种不同的方法，分别是最短距离法、最长距离法、类平均法、重心法、中间距离法、离差平方和法。</p></blockquote>
-
-<pre><code class="r">movies = read.table("movieLens.txt", header=FALSE, sep="|",quote="\"")
+<pre><code class="language-r">movies = read.table("movieLens.txt", header=FALSE, sep="|",quote="\"")
 
 # Compute distances
 distances = dist(movies[2:20], method = "euclidean")
@@ -683,12 +631,10 @@ plot(clusterMovies)
 # Assign points to clusters 10类
 clusterGroups = cutree(clusterMovies, k = 10)
 </code></pre>
+<p>### <strong>二、k均值聚类</strong><br />
+&gt;K均值聚类又称为动态聚类，它的计算方法较为简单，也不需要输入距离矩阵。首先要指定聚类的分类个数N，随机取N个样本作为初始类的中心，计算各样本与类中心的距离并进行归类，所有样本划分完成后重新计算类中心，重复这个过程直到类中心不再变化。</p>
 
-<h3><strong>二、k均值聚类</strong></h3>
-
-<blockquote><p>K均值聚类又称为动态聚类，它的计算方法较为简单，也不需要输入距离矩阵。首先要指定聚类的分类个数N，随机取N个样本作为初始类的中心，计算各样本与类中心的距离并进行归类，所有样本划分完成后重新计算类中心，重复这个过程直到类中心不再变化。</p></blockquote>
-
-<pre><code class="r">healthy = read.csv("healthy.csv", header=FALSE)
+<pre><code class="language-r">healthy = read.csv("healthy.csv", header=FALSE)
 healthyMatrix = as.matrix(healthy)
 
 # Plot image
@@ -712,8 +658,8 @@ dim(healthyClusters) = c(nrow(healthyMatrix), ncol(healthyMatrix))
 image(healthyClusters, axes = FALSE, col=rainbow(k))
 </code></pre>
 
-<pre><code class="r"># Apply to a test image
-
+<pre><code class="language-r"># Apply to a test image
+ 
 tumor = read.csv("tumor.csv", header=FALSE)
 tumorMatrix = as.matrix(tumor)
 tumorVector = as.vector(tumorMatrix)
@@ -730,33 +676,31 @@ dim(tumorClusters) = c(nrow(tumorMatrix), ncol(tumorMatrix))
 
 image(tumorClusters, axes = FALSE, col=rainbow(k))
 </code></pre>
+<p>## Visualization
+&gt;ggplot2 将绘图视为一种映射，即从数学空间映射到图形元素空间。例如将不同的数值映射到不同的色彩或透明度。该绘图包的特点在于并不去定义具体的图形（如直方图，散点图），而是定义各种底层组件（如线条、方块）来合成复杂的图形，这使它能以非常简洁的函数构建各类图形，而且默认条件下的绘图品质就能达到出版要求。</p>
 
-<h2>Visualization</h2>
-
-<blockquote><p>ggplot2 将绘图视为一种映射，即从数学空间映射到图形元素空间。例如将不同的数值映射到不同的色彩或透明度。该绘图包的特点在于并不去定义具体的图形（如直方图，散点图），而是定义各种底层组件（如线条、方块）来合成复杂的图形，这使它能以非常简洁的函数构建各类图形，而且默认条件下的绘图品质就能达到出版要求。</p></blockquote>
-
-<h4>ggplot2基本要素</h4>
+<h4 id="ggplot2">ggplot2基本要素</h4>
 
 <ul>
-<li><p><strong>数据（Data）和映射（Mapping)</strong></p>
+  <li>
+    <p><strong>数据（Data）和映射（Mapping)</strong></p>
 
-<p>  ggplot(data,mapping) 把数据映射到图形属性</p></li>
+    <p>ggplot(data,mapping) 把数据映射到图形属性</p>
+  </li>
 </ul>
 
+<pre><code class="language-r">	install.packages("ggplot2")
+	library(ggplot2)
 
-<pre><code class="r">    install.packages("ggplot2")
-    library(ggplot2)
-
-    # Create the ggplot object with the data and the aesthetic mapping:
-    p&lt;-ggplot(WHO, aes(x = GNI, y = FertilityRate, color = Region)) 
+	# Create the ggplot object with the data and the aesthetic mapping:
+	p&lt;-ggplot(WHO, aes(x = GNI, y = FertilityRate, color = Region)) 
 </code></pre>
 
 <ul>
-<li><strong>几何对象（Geometric）</strong></li>
+  <li><strong>几何对象（Geometric）</strong></li>
 </ul>
 
-
-<pre><code class="r"># Add the geom_point geometry
+<pre><code class="language-r"># Add the geom_point geometry
 p + geom_point()
 
 # Make a line graph instead:
@@ -765,47 +709,47 @@ p + geom_line()
 # Redo the plot with blue triangles instead of circles:
 p + geom_point(color = "blue", size = 3, shape = 17) 
 
-#geom_abline        geom_area   
-#geom_bar           geom_bin2d
-#geom_blank         geom_boxplot    
-#geom_contour       geom_crossbar
-#geom_density       geom_density2d  
-#geom_dotplot       geom_errorbar
-#geom_errorbarh     geom_freqpoly   
-#geom_hex           geom_histogram
-#geom_hline         geom_jitter     
-#geom_line          geom_linerange
-#geom_map           geom_path   
-#geom_point         geom_pointrange
-#geom_polygon       geom_quantile   
-#geom_raster        geom_rect
-#geom_ribbon        geom_rug    
-#geom_segment       geom_smooth
-#geom_step          geom_text   
-#geom_tile          geom_violin
+#geom_abline 		geom_area 	
+#geom_bar 			geom_bin2d
+#geom_blank 		geom_boxplot 	
+#geom_contour 		geom_crossbar
+#geom_density 		geom_density2d 	
+#geom_dotplot 		geom_errorbar
+#geom_errorbarh 	geom_freqpoly 	
+#geom_hex 			geom_histogram
+#geom_hline 		geom_jitter 	
+#geom_line 			geom_linerange
+#geom_map 			geom_path 	
+#geom_point 		geom_pointrange
+#geom_polygon 		geom_quantile 	
+#geom_raster 		geom_rect
+#geom_ribbon 		geom_rug 	
+#geom_segment 		geom_smooth
+#geom_step 			geom_text 	
+#geom_tile 			geom_violin
 #geom_vline
 </code></pre>
 
 <ul>
-<li><p><strong>标尺（Scale）</strong></p>
+  <li>
+    <p><strong>标尺（Scale）</strong></p>
 
-<p>  在对图形属性进行映射之后，使用标尺可以控制这些属性的显示方式，比如坐标刻度，可能通过标尺，将坐标进行对数变换；比如颜色属性，也可以通过标尺，进行改变。</p></li>
+    <p>在对图形属性进行映射之后，使用标尺可以控制这些属性的显示方式，比如坐标刻度，可能通过标尺，将坐标进行对数变换；比如颜色属性，也可以通过标尺，进行改变。</p>
+  </li>
 </ul>
 
-
-<pre><code class="r"># Let's try a log transformation:
+<pre><code class="language-r"># Let's try a log transformation:
 ggplot(WHO, aes(x = log(FertilityRate), y = Under15,color = Region)) + geom_point()
 # or
 ggplot(WHO, aes(x = FertilityRate, y = Under15,color = Region)) + geom_point()+scale_x_log10()+scale_color_manual(values=rainbow(7))
 </code></pre>
 
 <ul>
-<li><strong>统计变换（Statistics）</strong>
+  <li><strong>统计变换（Statistics）</strong>
 对原始数据进行某种计算，然后在图上表示出来，ggplot2提供的统计变幻方式有：</li>
 </ul>
 
-
-<pre><code class="r">stat_abline       stat_contour      stat_identity     stat_summary
+<pre><code class="language-r">stat_abline       stat_contour      stat_identity     stat_summary
 stat_bin          stat_density      stat_qq           stat_summary2d
 stat_bin2d        stat_density2d    stat_quantile     stat_summary_hex
 stat_bindot       stat_ecdf         stat_smooth       stat_unique
@@ -813,7 +757,7 @@ stat_binhex       stat_function     stat_spoke        stat_vline
 stat_boxplot      stat_hline        stat_sum          stat_ydensity
 </code></pre>
 
-<pre><code class="r"># Simple linear regression model to predict the percentage of the population under 15, using the log of the fertility rate:
+<pre><code class="language-r"># Simple linear regression model to predict the percentage of the population under 15, using the log of the fertility rate:
 mod = lm(Under15 ~ log(FertilityRate), data = WHO)
 summary(mod)
 
@@ -828,28 +772,29 @@ ggplot(WHO, aes(x = log(FertilityRate), y = Under15)) + geom_point() + stat_smoo
 
 # Change the color of the regression line:
 ggplot(WHO, aes(x = log(FertilityRate), y = Under15)) + geom_point() + stat_smooth(method = "lm", colour = "orange")
+
 </code></pre>
 
 <ul>
-<li><strong>坐标系统（Coordinante）</strong></li>
+  <li><strong>坐标系统（Coordinante）</strong></li>
 </ul>
 
+<blockquote>
+  <p>坐标系统控制坐标轴，可以进行变换，例如XY轴翻转，笛卡尔坐标和极坐标转换，以满足我们的各种需求。</p>
 
-<blockquote><p>坐标系统控制坐标轴，可以进行变换，例如XY轴翻转，笛卡尔坐标和极坐标转换，以满足我们的各种需求。</p>
-
-<p>坐标轴翻转coord_flip()<br/>
-转换成极坐标coord_polar()</p></blockquote>
+  <p>坐标轴翻转coord_flip()<br />
+转换成极坐标coord_polar()</p>
+</blockquote>
 
 <ul>
-<li><strong>图层（Layer）</strong><br/>
+  <li><strong>图层（Layer）</strong><br />
 采用“＋”来添加图层，即可以是添加映射关系，也可以是多个数据集绘图</li>
-<li><strong>分面（Facet）</strong><br/>
+  <li><strong>分面（Facet）</strong><br />
 facet_wrap()</li>
-<li><strong>主题（Theme）</strong></li>
+  <li><strong>主题（Theme）</strong></li>
 </ul>
 
-
-<pre><code class="r"># Add a title to the plot:
+<pre><code class="language-r"># Add a title to the plot:
 scatterplot + geom_point(colour = "blue", size = 3, shape = 17) + ggtitle("Fertility Rate vs. Gross National Income")
 
 # Save our plot:
@@ -861,14 +806,12 @@ print(fertilityGNIplot)
 
 dev.off()
 </code></pre>
+<p>####ggmap####
+&gt;ggmap包是基于ggplot2的图层语法构建的R包，它结合了来自Google Maps,OpenStreet Map,Stamen Maps和CloudMade Maps的静态地图信息来绘制主题地图。而且，ggmap中提供了一些应用函数以供使用者访问Google Geocoding,Distance Matrix和Directions 这几个 API。
+&gt;
+&gt; ggmap画地图的基本思路是下载地图作为ggplot2的基础画布，然后在其上加上数据，统计或者模型的分层。</p>
 
-<h4>ggmap</h4>
-
-<blockquote><p>ggmap包是基于ggplot2的图层语法构建的R包，它结合了来自Google Maps,OpenStreet Map,Stamen Maps和CloudMade Maps的静态地图信息来绘制主题地图。而且，ggmap中提供了一些应用函数以供使用者访问Google Geocoding,Distance Matrix和Directions 这几个 API。</p>
-
-<p>ggmap画地图的基本思路是下载地图作为ggplot2的基础画布，然后在其上加上数据，统计或者模型的分层。</p></blockquote>
-
-<pre><code class="r"># Load the ggmap package
+<pre><code class="language-r"># Load the ggmap package
 library(ggmap)
 
 # Load in the international student data
