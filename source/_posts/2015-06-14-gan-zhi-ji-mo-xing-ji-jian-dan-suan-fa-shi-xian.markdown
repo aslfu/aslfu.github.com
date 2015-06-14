@@ -11,6 +11,7 @@ categories:
 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}=\{+1,-1\}$.由输入空间到输出空间的如下函数称为感知机。  
 
 <!--more-->  
+
 ${f}(x)=sign(w\bullet x+b)$
 
 ----
@@ -41,9 +42,11 @@ $b<-b+\eta y_{i}$
 
 ---
 
+
 ### Python实现
 
 ~~~ python
+
 # coding:utf-8
 import numpy as np
 import pandas as pd
@@ -123,4 +126,6 @@ if __name__ == "__main__":
     p = Perceptron(1, np.zeros(2), 0, 10, data)
     result = p.train()
     print str(result)
+    
 ~~~
+
