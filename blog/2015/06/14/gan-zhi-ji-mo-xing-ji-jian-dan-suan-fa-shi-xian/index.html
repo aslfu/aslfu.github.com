@@ -9,7 +9,7 @@
   <meta name="author" content="Her">
 
   
-  <meta name="description" content="感知机模型 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。 ${f}(x)=sign(w\bullet x+b)$ ### 感知机策略 &hellip;">
+  <meta name="description" content="感知机模型 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。 ${f}(x)=sign(w\bullet x+b)$ 感知机策略 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,10 +89,12 @@
 <p>假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。</p>
 
 <!--more-->
+
 <p>${f}(x)=sign(w\bullet x+b)$</p>
 
 <hr />
-<p>### 感知机策略</p>
+
+<h3 id="section-1">感知机策略</h3>
 
 <p>假设训练数据集是线性可分的，感知机学习的目标是求得一个能够将训练集正负样本完全分开的分离超平面。为了找出这样的超平面，即确定感知机模型参数$w,b$，需要确定一个<strong>学习策略</strong>，即定义损失函数，并将其极小化.</p>
 
@@ -101,7 +103,8 @@
 <p>$L(w,b)＝-\sum_{x_{i}\in{M}}{y_{i}(w\bullet x_{i}+b)}$</p>
 
 <hr />
-<p>### 感知机算法</p>
+
+<h3 id="section-2">感知机算法</h3>
 
 <p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w_{0},b_{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
 
@@ -116,9 +119,11 @@
 <p>$b&lt;-b+\eta y_{i}$</p>
 
 <hr />
-<p>### Python实现</p>
 
-<pre><code class="language-py"># coding:utf-8
+<h3 id="python">Python实现</h3>
+
+<pre><code class="language-python">
+# coding:utf-8
 import numpy as np
 import pandas as pd
 """
@@ -197,7 +202,9 @@ if __name__ == "__main__":
     p = Perceptron(1, np.zeros(2), 0, 10, data)
     result = p.train()
     print str(result)
+    
 </code></pre>
+
 </div>
 
 
