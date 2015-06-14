@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>感知机模型及简单算法实现 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="感知机模型 假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。 ${f}(x)=sign(w\bullet x+b)$ 感知机策略 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="aslfu.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">感知机模型及简单算法实现</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-14T20:52:35+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>感知机模型</h3>
+
+<p>假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。</p>
+
+<!--more-->
+
+
+<p>
+${f}(x)=sign(w\bullet x+b)$</p>
+
+<hr />
+
+<h3>感知机策略</h3>
+
+<p>假设训练数据集是线性可分的，感知机学习的目标是求得一个能够将训练集正负样本完全分开的分离超平面。为了找出这样的超平面，即确定感知机模型参数$w,b$，需要确定一个<strong>学习策略</strong>，即定义损失函数，并将其极小化.</p>
+
+<p>损失函数的一个自然选择是误分类点的总数，但这样的损失函数不是参数$w,b$的连续可导函数，不易优化。损失函数的另一个选择是误分类点导超平面的总距离。定义为：</p>
+
+<p>$L(w,b)＝-\sum<em>{x</em>{i}\in{M}}{y<em>{i}(w\bullet x</em>{i}+b)}$</p>
+
+<hr />
+
+<h3>感知机算法</h3>
+
+<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法。首先，任意选取一个超平面$w<em>{0},b</em>{0}$,然后用梯度下降法不断地极小化目标函数。极小化过程中不是一次使M中所有误分类点的梯度下降，而是一次随机选取一个误分类点。</p>
+
+<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}x_{i}$</p>
+
+<p>$ \nabla<em>{w}L(w,b)=-\sum</em>{x<em>{i}\in{M}}y</em>{i}$</p>
+
+<p>随机选取一个误分类点$(x<em>{i},y</em>{i})$,对$w,b$进行更新：</p>
+
+<p>$w&lt;-w+\eta y<em>{i}x</em>{i}$</p>
+
+<p>$b&lt;-b+\eta y_{i}$</p>
+
+<hr />
+
+<h3>Python实现</h3>
+
+<pre><code class="py"># coding:utf-8
+import numpy as np
+import pandas as pd
+"""
+简单感知机学习算法
+
+感知机模型:f(x)=sign(w*x+b)
+算法策略:损失函数:L(w,b)=y(w*x+b)
+学习算法:梯度下降法
+w = w + eta*y*x
+b = b + eta*y
+
+数据来源：
+《统计学习方法》 李航 例2.1 P29
+@Python
+"""
+
+
+class Perceptron:
+    """Perceptron
+
+    Methods
+    ---------
+
+    __init__: 构造函数
+    isError: 判断是否为误分类点
+    updateWeights: 更新参数
+    train: 训练数据
+
+
+    """
+    def __init__(self, eta, w0, b0, iterMax, data):
+        """
+        eta: 学习率，w0：权重向量w的初始值，b0:偏置b的初始值，iterMax:最大循环次数
+        """
+        self.eta = eta
+        self.w = w0
+        self.b = b0
+        self.iterMax = iterMax
+        self.data = data
+
+    def isError(self, record):
+        if (np.dot(self.w, record[0:-1]) + self.b)*record[-1] &gt; 0:
+            return False
+        else:
+            return True
+
+    def updateWeights(self, record_err):
+        self.w = self.w + self.eta * record_err[0:-1] * record_err[-1]
+        self.b = self.b + self.eta * record_err[-1]
+        return
+
+    def train(self):
+        n = len(self.data)
+        flag = True  # Ture 仍包含误分类点；False 没有误分类点
+        iterNum = 0
+        """
+        停止条件：
+        训练集中没有误分类点 或 循环次数超限
+        """
+        while flag and iterNum &lt; self.iterMax:
+            iterNum += 1
+            for i in range(n):
+                if self.isError(data.values[i]):
+                    self.updateWeights(data.values[i])
+                    flag = True
+                else:
+                    flag = False
+        return (self.w, self.b)
+
+if __name__ == "__main__":
+    data = pd.DataFrame()
+    data["x1"] = np.array([3, 4, 1])
+    data["x2"] = np.array([3, 3, 1])
+    data["y"] = np.array([1, 1, -1])
+    n = len(data)
+    p = Perceptron(1, np.zeros(2), 0, 10, data)
+    result = p.train()
+    print str(result)
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-06-14T20:52:35+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:52 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/" data-via="" data-counturl="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/11/bu-lang-yun-dong/" title="Previous Post: 布朗运动">&laquo; 布朗运动</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/">感知机模型及简单算法实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/11/bu-lang-yun-dong/">布朗运动</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie/">The Analytics Edge课程小结</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
