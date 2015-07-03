@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Blog]]></title>
-  <link href="http://aslfu.github.io/atom.xml" rel="self"/>
-  <link href="http://aslfu.github.io/"/>
-  <updated>2015-07-02T23:21:14+08:00</updated>
-  <id>http://aslfu.github.io/</id>
+  <link href="http://www.fujiongjiong.com/atom.xml" rel="self"/>
+  <link href="http://www.fujiongjiong.com/"/>
+  <updated>2015-07-03T21:07:30+08:00</updated>
+  <id>http://www.fujiongjiong.com/</id>
   <author>
     <name><![CDATA[Her]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[感知机模型及简单算法实现]]></title>
-    <link href="http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/"/>
+    <link href="http://www.fujiongjiong.com/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian/"/>
     <updated>2015-06-14T20:52:35+08:00</updated>
-    <id>http://aslfu.github.io/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian</id>
+    <id>http://www.fujiongjiong.com/blog/2015/06/14/gan-zhi-ji-mo-xing-ji-jian-dan-suan-fa-shi-xian</id>
     <content type="html"><![CDATA[<h3 id="section">感知机模型</h3>
 
 <p>假设输入空间（特征空间是）$\mathcal{X}\subseteq\mathcal{R}^{n}$,输出空间是$\mathcal{Y}={+1,-1}$.由输入空间到输出空间的如下函数称为感知机。</p>
@@ -144,9 +144,9 @@ if __name__ == "__main__":
   
   <entry>
     <title type="html"><![CDATA[布朗运动]]></title>
-    <link href="http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong/"/>
+    <link href="http://www.fujiongjiong.com/blog/2015/06/11/bu-lang-yun-dong/"/>
     <updated>2015-06-11T22:18:33+08:00</updated>
-    <id>http://aslfu.github.io/blog/2015/06/11/bu-lang-yun-dong</id>
+    <id>http://www.fujiongjiong.com/blog/2015/06/11/bu-lang-yun-dong</id>
     <content type="html"><![CDATA[<h2 id="section">花粉与英国海岸线</h2>
 
 <p><strong>布朗运动的研究历史</strong> 
@@ -188,9 +188,9 @@ if __name__ == "__main__":
   
   <entry>
     <title type="html"><![CDATA[The Analytics Edge课程小结]]></title>
-    <link href="http://aslfu.github.io/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie/"/>
+    <link href="http://www.fujiongjiong.com/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie/"/>
     <updated>2015-05-31T23:00:32+08:00</updated>
-    <id>http://aslfu.github.io/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie</id>
+    <id>http://www.fujiongjiong.com/blog/2015/05/31/the-analytics-edgeke-cheng-xiao-jie</id>
     <content type="html"><![CDATA[<h2 id="intro">Intro</h2>
 <pre><code class="language-r">str()
 summary()
